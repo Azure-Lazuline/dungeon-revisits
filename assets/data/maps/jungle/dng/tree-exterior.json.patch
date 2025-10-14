@@ -53,7 +53,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Dungeon Revisit"
+						"en_US": "Start Over -\nGrand Krys'kajo"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",

@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Dungeon Revisit"
+						"en_US": "Start Over -\nRhombus Dungeon"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",
@@ -214,6 +214,14 @@
 								"type": "SHOW_BOARD_MSG",
 								"text": {
 									"en_US": "While inside, you won't be able to use the dungeon's \\c[3]Element\\c[0] until you reclaim it, but all other Elements stay active."
+								},
+								"side": "RIGHT",
+								"center": false,
+								"autoContinue": false
+							}, {
+								"type": "SHOW_BOARD_MSG",
+								"text": {
+									"en_US": "For any dungeon except this one, you can leave it at any time and return to finish it later."
 								},
 								"side": "RIGHT",
 								"center": false,

@@ -12,7 +12,7 @@
 			"settings": {
 				"name": "firstEntranceRepeat",
 				"eventType": "CUTSCENE",
-				"startCondition": "g.vermillionTowerIntroNew",
+				"startCondition": "reset-arid-dng && g.vermillionTowerIntroNew",
 				"endCondition": "false",
 				"event": [{
 						"type": "SET_OVERLAY",
@@ -38,7 +38,7 @@
 								},
 								"type": "SET_POS"
 							},{
-								"value": 0.5,
+								"value": 0.8,
 								"type": "SET_RELATIVE_SPEED"
 							}, {
 								"target": {

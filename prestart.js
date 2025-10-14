@@ -424,6 +424,7 @@ ig.EVENT_STEP.IF.inject({
 					//unlock the elements that were disabled
 					ig.vars.storage[area].disabledElement = null;
 					
+					//copypasted from base
 					return conditionOverride ? this.branches.thenStep ? this.branches.thenStep : this._nextStep : this.branches.elseStep ? this.branches.elseStep : this._nextStep;
 				}
 			}
@@ -451,7 +452,7 @@ ig.ENTITY.TeleportGround.inject({
 			&& this.map == "arid.tower-1" && this.marker == "towerEntrance") //override exit out of tower
 		{
 			this.map = "forest.path-10-hidden";
-			this.marker = "revisitTele";
+			this.marker = "revisitTeleMarker";
 			this.transitionType = 2; //fade to white
 		}
 	}

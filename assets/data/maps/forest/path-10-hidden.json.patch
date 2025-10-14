@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Dungeon Revisit"
+						"en_US": "Start Over -\nVermillion Tower"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",
@@ -82,7 +82,7 @@
 				"map": "arid-dng.second.f0.entrance",
 				"marker": "entrance",
 				"teleportLabel": {
-					"en_US": "To Vermillion Tower"
+					"en_US": "To \\c[3]Vermillion Tower\\c[0]"
 				},
 				"longTeleCond": true,
 				"spawnCondition": "tmp.revisitTele"
@@ -93,8 +93,8 @@
 		"content":
 		{
 			"type": "Marker",
-			"x": 487,
-			"y": 200,
+			"x": 483,
+			"y": 196,
 			"level": 1,
 			"settings": {
 				"size": {
