@@ -1,0 +1,90 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 304,
+			"y": 256,
+			"level": 0,
+			"settings": {
+				"name": "skipEquip",
+				"eventType": "CUTSCENE",
+				"endCondition": "false",
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.tutorialEquip",
+						"changeType": "set",
+						"value": false
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.headEquiped",
+						"changeType": "set",
+						"value": true
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.armsEquipped",
+						"changeType": "set",
+						"value": true
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.beltEquipped",
+						"changeType": "set",
+						"value": true
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.feetEquipped",
+						"changeType": "set",
+						"value": true
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.tutorialEquip",
+						"changeType": "set",
+						"value": false
+					}, {
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "map.equipCount",
+						"changeType": "set",
+						"value": 1
+					}
+				],
+				"triggerType": "ONCE",
+				"startCondition": "reset-rhombus-dng && tmp.tutorialEquip"
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 334,
+			"y": 256,
+			"level": 0,
+			"settings": {
+				"name": "skipEquipAllChests",
+				"eventType": "PARALLEL",
+				"endCondition": "false",
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.skippedEquipChests",
+						"changeType": "set",
+						"value": true
+					},{
+						"type": "WAIT",
+						"time": 1.5
+					}, {
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "map.equipCount",
+						"changeType": "set",
+						"value": 4
+					}
+				],
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-rhombus-dng && map.headGet && map.armsGet && map.beltGet && map.feetGet && !map.skippedEquipChests"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

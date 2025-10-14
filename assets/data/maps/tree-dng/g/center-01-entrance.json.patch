@@ -1,0 +1,58 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 476,
+			"y": 416,
+			"level": 1,
+			"settings": {
+				"name": "firstEntranceRepeat",
+				"eventType": "CUTSCENE",
+				"startCondition": "redoDungeonIntro",
+				"endCondition": "false",
+				"event": [{
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"value": 1.0,
+								"type": "SET_RELATIVE_SPEED"
+							}, {
+								"target": {
+									"x": 368,
+									"y": 424,
+									"lvl": "1"
+								},
+								"maxTime": 0,
+								"distance": 0,
+								"precise": false,
+								"planOnly": false,
+								"teleportOnFail": false,
+								"type": "NAVIGATE_TO_POINT"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"type": "DO_ACTION"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.3
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "redoDungeonIntro",
+						"value": false
+					}
+				],
+				"triggerType": "ALWAYS",
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

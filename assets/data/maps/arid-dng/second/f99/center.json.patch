@@ -1,0 +1,639 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 504,
+			"y": 476,
+			"level": 1,
+			"settings": {
+				"name": "letTheBattleBeginNew",
+				"eventType": "CUTSCENE",
+				"endCondition": "false",
+				"event": [{
+						"bgm": "dreamsequence-intro",
+						"volume": 1,
+						"mode": "SLOW",
+						"type": "PLAY_BGM"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"value": 0.3,
+								"type": "SET_RELATIVE_SPEED"
+							}, {
+								"target": {
+									"x": 368,
+									"y": 512,
+									"lvl": "1"
+								},
+								"maxTime": 0,
+								"distance": 0,
+								"precise": true,
+								"planOnly": false,
+								"teleportOnFail": true,
+								"type": "NAVIGATE_TO_POINT"
+							}, {
+								"face": "NORTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.designerThere",
+						"value": true
+					}, {
+						"zoomType": "LIGHTER",
+						"fadeIn": 2,
+						"duration": -1,
+						"fadeOut": 2,
+						"name": "blur",
+						"type": "SET_ZOOM_BLUR"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "aura",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "scene.designer",
+							"name": "designerAuraMajor"
+						},
+						"offset": {
+							"x": 0,
+							"y": -128,
+							"z": -128
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "aura",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "scene.designer",
+							"name": "designerFloat"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"action": [{
+								"newPos": {
+									"x": 368,
+									"y": 424,
+									"lvl": {
+										"level": "1",
+										"offset": 256
+									}
+								},
+								"type": "SET_POS"
+							}, {
+								"value": 0,
+								"type": "SET_Z_VEL"
+							}, {
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}, {
+								"target": {
+									"x": 368,
+									"y": 424,
+									"lvl": {
+										"level": "1",
+										"offset": 48
+									}
+								},
+								"maxFlySpeed": 40,
+								"flyVariance": 3,
+								"precise": true,
+								"keepFloating": true,
+								"type": "FLY_TO_POINT"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"pos": {
+							"x": 368,
+							"y": 376
+						},
+						"speed": "SLOWER",
+						"transition": "EASE_OUT",
+						"wait": true,
+						"waitSkip": 0.3,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 1.5
+					}, {
+						"side": "LEFT",
+						"order": 0,
+						"clearSide": false,
+						"type": "ADD_MSG_PERSON",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DOWN"
+						}
+					}, {
+						"side": "RIGHT",
+						"order": 0,
+						"clearSide": false,
+						"type": "ADD_MSG_PERSON",
+						"person": {
+							"person": "main.lea",
+							"expression": "DETERMINED"
+						}
+					}, {
+						"message": {
+							"en_US": "We seek the ultimate experience.",
+							"langUid": 17,
+							"de_DE": "Unser Streben gilt allein der ultimativen Erfahrung.",
+							"ja_JP": "\u6211\u3005\u306f\u7a76\u6975\u306e\u7d4c\u9a13\u3092\n\u63a2\u3057\u6c42\u3081\u3066\u304d\u305f\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uc6b0\ub9b0 \uad81\uadf9\uc758 \uacbd\ud5d8\uc744 \ucc3e\ub294\ub2e4.<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u6211\u4eec\u8ffd\u5bfb\u81f3\u9ad8\u4f53\u9a8c\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u6211\u5011\u8ffd\u5c0b\u81f3\u9ad8\u9ad4\u9a57\u3002<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "TOWARD"
+						}
+					}, {
+						"message": {
+							"en_US": "And everything changed...\\. when we met you.",
+							"langUid": 18,
+							"de_DE": "Doch das \u00e4nderte sich alles...\\. als wir dich trafen.",
+							"ja_JP": "\u305d\u3057\u3066\u6211\u3005\u306f\u8cb4\u69d8\u306b\u51fa\u4f1a\u3044...\\.\n\u3059\u3079\u3066\u304c\u5909\u308f\u3063\u305f\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uadf8\ub9ac\uace0 \ubaa8\ub4e0 \uac8c \ubc14\ub00c\uc5c8\uc9c0...\\. \uc6b0\ub9ac\uac00 \ub110 \ub9cc\ub0ac\uc744 \ub54c.<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u800c\u5f53\u6211\u4eec\u9047\u5230\u4e86\u4f60...\\.\u4e00\u5207\u968f\u4e4b\u6539\u53d8\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u800c\u7576\u6211\u5011\u9047\u5230\u4e86\u4f60...\\.\u4e00\u5207\u96a8\u4e4b\u6539\u8b8a\u3002<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DOWN"
+						}
+					}, {
+						"message": {
+							"en_US": "Once an empty vessel, a caged bird.",
+							"langUid": 19,
+							"de_DE": "Einst kaum mehr als eine leere H\u00fclle, ein Vogel im K\u00e4fig.",
+							"ja_JP": "\u304b\u3064\u3066\u3001\u8cb4\u69d8\u306f\u7a7a\u306e\u5668\u3001\n\u30ab\u30b4\u306b\u56da\u308f\u308c\u305f\u5c0f\u9ce5\u3060\u3063\u305f\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\ud55c\ub54c \ube48 \uaecd\ub370\uae30, \uc0c8\uc7a5\uc5d0 \uac07\ud78c \uc0c8\uc600\ub358 \ub108\ub97c.<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u66fe\u662f\u7a7a\u865a\u8eaf\u58f3\uff0c\u7b3c\u4e2d\u4e4b\u9e1f\u3002<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u66fe\u662f\u7a7a\u865b\u8ec0\u6bbc\uff0c\u7c60\u4e2d\u4e4b\u9ce5\u3002<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DEFAULT"
+						}
+					}, {
+						"message": {
+							"en_US": "Now back again, whole and free!",
+							"langUid": 20,
+							"de_DE": "Ist er nun wieder hier, vollkommen und frei!",
+							"ja_JP": "\u305d\u308c\u304c\u4eca\u3084\u5b8c\u5168\u4f53\u3068\u306a\u308a\u3001\n\u81ea\u7531\u3092\u624b\u306b\u5165\u308c\u305f\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uadf8\ub7ac\ub358 \ub124\uac00 \uc644\uc804\ud574\uc9c0\uace0 \uc790\uc720\ub85c\uc6cc\uc84c\uc5b4!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u4e45\u522b\u91cd\u5f52\uff0c\u5b8c\u6574\u81ea\u7531\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u4e45\u5225\u91cd\u6b78\uff0c\u5b8c\u6574\u81ea\u7531\uff01<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DEFAULT"
+						}
+					}, {
+						"message": {
+							"en_US": "Filled with boundless resourcefulness... born out of hope!",
+							"langUid": 21,
+							"de_DE": "Eine Quelle schier unbegrenzten Einfallsreichtums... aus der Hoffnung geboren!",
+							"ja_JP": "\u7121\u9650\u306e\u624d\u899a\u306b\u6e80\u305f\u3055\u308c...\n\u5e0c\u671b\u3088\u308a\u751f\u307e\u308c\u51fa\u3067\u305f\u8005\u3088\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\ud76c\ub9dd\uc5d0\uc11c \ub098\uc628... \ub05d\uc5c6\ub294 \uc784\uae30\uc751\ubcc0\uc73c\ub85c \uac00\ub4dd\ud55c!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u673a\u667a\u7075\u5de7...\u5145\u6ee1\u5e0c\u671b\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u6a5f\u667a\u9748\u5de7...\u5145\u6eff\u5e0c\u671b\uff01<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "SMILE"
+						}
+					}, {
+						"message": {
+							"en_US": "You are the one!",
+							"langUid": 22,
+							"de_DE": "Du bist es!",
+							"ja_JP": "\u8cb4\u69d8\u3053\u305d\u304c\u9078\u3070\u308c\u3057\u3082\u306e\u3060\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\ub124\uac00 \ubc14\ub85c \uadf8 \uc874\uc7ac\ub2e4!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u4f60\u4fbf\u662f\u5929\u9009\u4e4b\u4eba\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u4f60\u4fbf\u662f\u5929\u9078\u4e4b\u4eba\uff01<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DOWN"
+						}
+					}, {
+						"message": {
+							"en_US": "The player we desired!",
+							"langUid": 23,
+							"de_DE": "Der Spieler, den wir ersehnten!",
+							"ja_JP": "\u6211\u3005\u304c\u671b\u3093\u3067\u3044\u305f\n\u30d7\u30ec\u30a4\u30e4\u30fc\u306a\u306e\u3060\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uc6b0\ub9ac\uac00 \ubc14\ub77c\ub358 \ud50c\ub808\uc774\uc5b4!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u6211\u4eec\u6e34\u671b\u7684\u90a3\u552f\u4e00\u73a9\u5bb6\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u6211\u5011\u6e34\u671b\u7684\u90a3\u552f\u4e00\u73a9\u5bb6\uff01<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "LAUGH"
+						}
+					}, {
+						"message": {
+							"en_US": "And thus....",
+							"langUid": 24,
+							"de_DE": "Und so...",
+							"ja_JP": "\u3055\u3042...<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uadf8\ub7ec\ubbc0\ub85c...<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u90a3\u4e48...<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u90a3\u9ebc...<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "LAUGH"
+						}
+					}, {
+						"side": "ALL",
+						"type": "CLEAR_MSG"
+					}, {
+						"mapSounds": "",
+						"type": "SET_MAP_SOUNDS"
+					}, {
+						"mode": "MEDIUM",
+						"type": "PAUSE_BGM"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"offsetX": 0,
+						"offsetY": 0,
+						"speed": "FAST",
+						"transition": "EASE_IN_OUT",
+						"wait": false,
+						"waitSkip": 0,
+						"zoom": 1.5,
+						"type": "SET_CAMERA_TARGET"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"action": [{
+								"target": {
+									"x": 368,
+									"y": 424,
+									"lvl": {
+										"level": "1",
+										"offset": 48
+									}
+								},
+								"maxFlySpeed": 40,
+								"flyVariance": 3,
+								"precise": true,
+								"keepFloating": true,
+								"type": "FLY_TO_POINT"
+							}, {
+								"followUp": null,
+								"wait": false,
+								"viaWalkConfig": false,
+								"anim": "uberMagicPrepare",
+								"type": "SHOW_ANIMATION"
+							}, {
+								"time": 0.5,
+								"type": "WAIT"
+							}, {
+								"followUp": "uberMagic",
+								"wait": false,
+								"viaWalkConfig": false,
+								"anim": "uberMagicPre",
+								"type": "SHOW_ANIMATION"
+							}, {
+								"time": 0.1,
+								"type": "WAIT"
+							}, {
+								"duration": 0,
+								"align": "CENTER",
+								"rotateFace": 0,
+								"flipLeftFace": false,
+								"wait": false,
+								"waitSkip": 0,
+								"actionDetached": false,
+								"fixPos": false,
+								"effect": {
+									"sheet": "scene.designer",
+									"name": "magicStart"
+								},
+								"offset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"type": "SHOW_EFFECT"
+							}, {
+								"time": 1,
+								"type": "WAIT"
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"side": "LEFT",
+						"order": 0,
+						"clearSide": false,
+						"type": "ADD_MSG_PERSON",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "DOWN"
+						}
+					}, {
+						"message": {
+							"en_US": "The ultimate experience...\\. shall begin!!",
+							"langUid": 25,
+							"de_DE": "... m\u00f6ge die ultimative Erfahrung...\\. nun beginnen!!",
+							"ja_JP": "\u7a76\u6975\u306e\u7d4c\u9a13\u3092...\\.\n\u59cb\u3081\u3088\u3046\u3067\u306f\u306a\u3044\u304b\uff01\uff01<<A<<[CHANGED 2018\/08\/28]",
+							"ko_KR": "\uad81\uadf9\uc758 \uacbd\ud5d8\uc744...\\. \uc2dc\uc791\ud574\ubcfc\uae4c!!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_CN": "\u81f3\u9ad8\u4f53\u9a8c...\\.\u4e8e\u6b64\u5f00\u59cb!!<<A<<[CHANGED 2018\/08\/28]",
+							"zh_TW": "\u81f3\u9ad8\u9ad4\u9a57...\\.\u65bc\u6b64\u958b\u59cb!!<<A<<[CHANGED 2018\/08\/28]"
+						},
+						"autoContinue": false,
+						"type": "SHOW_MSG",
+						"person": {
+							"person": "antagonists.designer",
+							"expression": "SHOUT"
+						}
+					}, {
+						"side": "ALL",
+						"type": "CLEAR_MSG"
+					}, {
+						"name": "blur",
+						"fadeOut": 0.5,
+						"type": "FADE_OUT_ZOOM_BLUR"
+					}, {
+						"alpha": 0.5,
+						"type": "SET_SCREEN_BLUR"
+					}, {
+						"pos": {
+							"x": 368,
+							"y": 512
+						},
+						"speed": "FASTER",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0,
+						"zoom": 1.5,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"zoomType": "MEDIUM",
+						"fadeIn": 0.1,
+						"duration": 0.5,
+						"fadeOut": 0.5,
+						"type": "SET_ZOOM_BLUR"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"duration": -1,
+								"align": "CENTER",
+								"rotateFace": 0,
+								"flipLeftFace": false,
+								"wait": false,
+								"waitSkip": 0,
+								"actionDetached": false,
+								"fixPos": false,
+								"type": "SHOW_EFFECT",
+								"effect": {
+									"sheet": "scene.designer",
+									"name": "magicHover"
+								},
+								"offset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								}
+							}, {
+								"duration": -1,
+								"align": "BOTTOM",
+								"rotateFace": 0,
+								"flipLeftFace": false,
+								"wait": false,
+								"waitSkip": 0,
+								"actionDetached": false,
+								"fixPos": false,
+								"type": "SHOW_EFFECT",
+								"effect": {
+									"sheet": "trail",
+									"name": "whiteQuick"
+								},
+								"offset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								}
+							}, {
+								"value": 16,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"type": "WAIT",
+								"time": 1
+							}, {
+								"value": 256,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"accel": 2,
+								"speed": 400,
+								"type": "SET_FLOAT_PARAMS"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"volume": 1,
+						"name": "",
+						"loop": false,
+						"offset": 0,
+						"startTime": 0,
+						"type": "PLAY_SOUND",
+						"sound": "media\/sound\/scenes\/swoosh-rise-long.ogg"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 1
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"action": [{
+								"type": "CLEAR_ANIMATION"
+							}, {
+								"accel": 2,
+								"type": "SET_FLOAT_PARAMS"
+							}, {
+								"target": {
+									"x": 368,
+									"y": 424,
+									"lvl": {
+										"level": "1",
+										"offset": 256
+									}
+								},
+								"maxFlySpeed": 400,
+								"flyVariance": 3,
+								"precise": true,
+								"keepFloating": true,
+								"type": "FLY_TO_POINT"
+							}, {
+								"time": -1,
+								"type": "WAIT"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"pos": {
+							"x": 368,
+							"y": 128
+						},
+						"speed": "NORMAL",
+						"transition": "EASE_IN",
+						"wait": false,
+						"waitSkip": 0,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"alpha": 1,
+						"time": 2,
+						"lighter": true,
+						"type": "SET_OVERLAY",
+						"color": "white"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 2
+					}, {
+						"entity": {
+							"global": true,
+							"name": "designer"
+						},
+						"group": "aura",
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"value": 256,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.5
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "plot.line",
+						"value": 30500
+					}, {
+						"lighter": true,
+						"type": "SET_TELEPORT_COLOR",
+						"color": "white"
+					}, {
+						"value": "SAVE",
+						"type": "SET_MOBILITY_BLOCK"
+					}, {
+						"type": "TELEPORT",
+						"map": "arid-dng.second.f99.boss-1",
+						"marker": "center"
+					}, {
+						"name": "end",
+						"type": "LABEL"
+					}
+				],
+				"triggerType": "ONCE",
+				"startCondition": "tmp.finalBattleStart && reset-arid-dng"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

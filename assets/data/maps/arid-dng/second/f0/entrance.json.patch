@@ -1,0 +1,73 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 476,
+			"y": 416,
+			"level": 1,
+			"settings": {
+				"name": "firstEntranceRepeat",
+				"eventType": "CUTSCENE",
+				"startCondition": "g.vermillionTowerIntroNew",
+				"endCondition": "false",
+				"event": [{
+						"type": "SET_OVERLAY",
+						"color": "white",
+						"alpha": 1,
+						"time": 0,
+						"lighter": true
+					},{
+						"type": "SET_OVERLAY",
+						"color": "white",
+						"alpha": 0,
+						"time": 2.0,
+						"lighter": true
+					},{
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"newPos": {
+									"x": 368,
+									"y": 920,
+									"lvl": "1"
+								},
+								"type": "SET_POS"
+							},{
+								"value": 0.5,
+								"type": "SET_RELATIVE_SPEED"
+							}, {
+								"target": {
+									"x": 368,
+									"y": 732,
+									"lvl": "1"
+								},
+								"maxTime": 0,
+								"distance": 0,
+								"precise": false,
+								"planOnly": false,
+								"teleportOnFail": false,
+								"type": "NAVIGATE_TO_POINT"
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": false,
+						"type": "DO_ACTION"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "g.vermillionTowerIntroNew",
+						"value": false
+					}
+				],
+				"triggerType": "ALWAYS",
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

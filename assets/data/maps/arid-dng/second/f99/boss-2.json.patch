@@ -1,0 +1,71 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 0,
+			"y": 0,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"event": [{
+						"type": "PLAY_SOUND",
+						"sound": "media/sound/battle/level-up.ogg",
+						"volume": 1
+					}, {
+						"type": "SHOW_BOARD_MSG",
+						"center": true,
+						"side": "",
+						"text": {
+							"en_US": "===DungeonReplayEnd===",
+							"de_DE": "",
+							"ja_JP": "",
+							"ko_KR": "",
+							"zh_CN": "",
+							"zh_TW": ""
+						}
+					}, {
+						"type": "CLEAR_BOARD_MSG"
+					}, {
+						"type": "DUNGEON_REPLAY_DONE",
+						"dungeon": "arid-dng"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "g.vermillionTowerReturnNew",
+						"value": true
+					}, {
+						"value": "NONE",
+						"type": "SET_MOBILITY_BLOCK"
+					}, {
+						"type": "SET_TELEPORT_COLOR",
+						"color": "white"
+					}, {
+						"type": "SET_TELEPORT_TIME",
+						"fadeIn": 1,
+						"fadeOut": 3
+					}, {
+						"type": "TELEPORT",
+						"map": "forest.path-10-hidden",
+						"marker": "revisitTeleMarker"
+					}, {
+						"type": "WAIT",
+						"time": 4
+					}
+				],
+				"name": "ReplayDone",
+				"eventType": "CUTSCENE",
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-arid-dng && tmp.bossFinished",
+				"endCondition": "false"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

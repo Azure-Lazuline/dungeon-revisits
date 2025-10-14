@@ -1,0 +1,13 @@
+{
+    "id": "dungeon-revisits",
+	"version": "1.0.0",
+    "title": "Dungeon Revisits",
+	"description": "Play any dungeon as much as you want, scaled up to endgame levels.",
+    "repository": "",
+    "tags": ["dungeon"],
+    "authors": "Azure Lazuline",
+	"icons": {
+		"24": "icon24.png"
+	},
+	"prestart": "prestart.js"
+}

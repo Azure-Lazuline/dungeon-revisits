@@ -1,0 +1,171 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 0,
+			"y": 0,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"event": [{
+						"type": "SET_CAMERA_TARGET",
+						"entity": {
+							"player": true
+						},
+						"speed": 0.6,
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"zoom": 1.0,
+						"waitSkip": 0.3
+					}, {
+						"type": "DUNGEON_REPLAY_DONE",
+						"dungeon": "wave-dng"
+					}, {
+						"type": "PLAY_SOUND",
+						"sound": "media/sound/battle/level-up.ogg",
+						"volume": 1
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"followUp": "levelUpStand",
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPre"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"type": "SET_ZOOM_BLUR",
+						"zoomType": "MEDIUM",
+						"align": "CENTER",
+						"target": {
+							"player": true
+						},
+						"fadeIn": 0.1,
+						"duration": 0.9,
+						"fadeOut": 2.0
+					}, {
+						"type": "WAIT",
+						"time": 0.6
+					}, {
+						"type": "POP_BGM",
+						"mode": "IMMEDIATE"
+					},{
+						"type": "RESUME_BGM",
+						"mode": "SLOW"
+					},{
+						"type": "PLAY_IN_BETWEEN_BGM",
+						"bgm": "lolfanfare",
+						"volume": 1,
+						"mode": "MEDIUM"
+					}, {
+						"type": "SHOW_BOARD_MSG",
+						"center": true,
+						"side": "",
+						"text": {
+							"en_US": "===DungeonReplayEnd===",
+							"de_DE": "",
+							"ja_JP": "",
+							"ko_KR": "",
+							"zh_CN": "",
+							"zh_TW": ""
+						}
+					}, {
+						"type": "CLEAR_BOARD_MSG"
+					},{
+						"type": "RESET_CAMERA",
+						"transition": "EASE_IN_OUT",
+						"wait": false
+					}, {
+						"type": "WAIT",
+						"time": 0.25
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.3,
+								"type": "WAIT"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpJump"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true,
+						"keepState": true
+					}, {
+						"type": "SHOW_EFFECT",
+						"entity": {
+							"player": true
+						},
+						"offset": {
+							"x": 0,
+							"y": -5
+						},
+						"align": "CENTER",
+						"effect": {
+							"sheet": "dungeoncomplete",
+							"name": "dungeoncomplete"
+						},
+						"duration": 0,
+						"ignoreSlowMo": true
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"jumpHeight": "M",
+								"wait": true,
+								"ignoreSounds": true,
+								"type": "JUMP"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.2,
+								"type": "WAIT"
+							}, {
+								"type": "CLEAR_ANIMATION"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true
+					}
+				],
+				"name": "ReplayDone",
+				"eventType": "CUTSCENE",
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-wave-dng && map.bossDefeated",
+				"endCondition": "false"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

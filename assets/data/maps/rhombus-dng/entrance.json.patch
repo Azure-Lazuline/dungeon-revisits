@@ -1,0 +1,186 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 304,
+			"y": 256,
+			"level": 0,
+			"settings": {
+				"name": "introNew",
+				"eventType": "CUTSCENE",
+				"endCondition": "false",
+				"event": [{
+						"core": "EXP",
+						"value": true,
+						"type": "SET_PLAYER_CORE"
+					}, {
+						"zoomType": "LIGHT",
+						"fadeIn": 0,
+						"duration": 4,
+						"fadeOut": 1,
+						"name": null,
+						"type": "SET_ZOOM_BLUR"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"offsetX": 0,
+						"offsetY": 0,
+						"speed": "IMMEDIATELY",
+						"transition": "EASE",
+						"wait": true,
+						"waitSkip": 0,
+						"zoom": 3,
+						"type": "SET_CAMERA_TARGET"
+					}, {
+						"alpha": 0.6,
+						"time": 0,
+						"lighter": true,
+						"color": "white",
+						"type": "SET_OVERLAY"
+					}, {
+						"zoom": 1,
+						"duration": 4,
+						"transition": "EASE_OUT",
+						"type": "SET_CAMERA_ZOOM"
+					}, {
+						"alpha": 0,
+						"time": 3,
+						"lighter": true,
+						"color": "white",
+						"type": "SET_OVERLAY"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"duration": 0,
+						"align": "BOTTOM",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"effect": {
+							"sheet": "teleport",
+							"name": "showSlow"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						},
+						"type": "SHOW_EFFECT"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"text": {
+							"de_DE": "Initialisiere Avatar",
+							"en_US": "Initializing Avatar",
+							"langUid": 1,
+							"fr_FR": "",
+							"zh_CN": "\u6b63\u5728\u521d\u59cb\u5316\u865a\u62df\u4eba\u7269",
+							"ko_KR": "\uc544\ubc14\ud0c0 \ucd08\uae30\ud654 \uc911",
+							"ja_JP": "\u30a2\u30d0\u30bf\u30fc\u521d\u671f\u5316\u4e2d",
+							"zh_TW": "\u6b63\u5728\u521d\u59cb\u5316\u865b\u64ec\u4eba\u7269"
+						},
+						"time": 4,
+						"mode": "LINE_FILL",
+						"color": "GREEN",
+						"type": "SHOW_AR_MSG"
+					}, {
+						"ignoreSlowDown": false,
+						"time": 4,
+						"type": "WAIT"
+					}, {
+						"changeType": "set",
+						"varName": "map.arSign",
+						"value": true,
+						"type": "CHANGE_VAR_BOOL"
+					}, {
+						"ignoreSlowDown": false,
+						"time": 0.3,
+						"type": "WAIT"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"face": "NORTH",
+								"rotate": true,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"type": "DO_ACTION"
+					}, {
+						"pos": {
+							"x": 448,
+							"y": 316
+						},
+						"speed": "NORMAL",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0.2,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"target": {
+									"x": 448,
+									"y": 360,
+									"lvl": "0"
+								},
+								"precise": false,
+								"type": "MOVE_TO_POINT"
+							}, {
+								"face": "NORTH",
+								"rotate": true,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": false,
+						"type": "DO_ACTION"
+					}, {
+						"alpha": 0,
+						"time": 0,
+						"lighter": false,
+						"color": "black",
+						"type": "SET_OVERLAY"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"face": "NORTH",
+								"rotate": true,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": false,
+						"type": "DO_ACTION"
+					}, {
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.introNew",
+						"changeType": "set",
+						"value": true
+					}
+				],
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-rhombus-dng && !map.introNew",
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

@@ -1,0 +1,220 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 0,
+			"y": 0,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"event": [{
+						"type": "SET_CAMERA_TARGET",
+						"entity": {
+							"player": true
+						},
+						"speed": 0.6,
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"zoom": 1.0,
+						"waitSkip": 0.3
+					}, {
+						"type": "DUNGEON_REPLAY_DONE",
+						"dungeon": "rhombus-dng"
+					}, {
+						"type": "PLAY_SOUND",
+						"sound": "media/sound/battle/level-up.ogg",
+						"volume": 1
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"followUp": "levelUpStand",
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPre"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"type": "SET_ZOOM_BLUR",
+						"zoomType": "MEDIUM",
+						"align": "CENTER",
+						"target": {
+							"player": true
+						},
+						"fadeIn": 0.1,
+						"duration": 0.9,
+						"fadeOut": 2.0
+					}, {
+						"type": "WAIT",
+						"time": 0.6
+					}, {
+						"type": "POP_BGM",
+						"mode": "IMMEDIATE"
+					},{
+						"type": "RESUME_BGM",
+						"mode": "SLOW"
+					}, {
+						"type": "SHOW_BOARD_MSG",
+						"center": true,
+						"side": "",
+						"text": {
+							"en_US": "===DungeonReplayEnd===",
+							"de_DE": "",
+							"ja_JP": "",
+							"ko_KR": "",
+							"zh_CN": "",
+							"zh_TW": ""
+						}
+					}, {
+						"type": "CLEAR_BOARD_MSG"
+					},{
+						"type": "RESET_CAMERA",
+						"transition": "EASE_IN_OUT",
+						"wait": false
+					}, {
+						"type": "WAIT",
+						"time": 0.25
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.3,
+								"type": "WAIT"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpJump"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true,
+						"keepState": true
+					}, {
+						"type": "SHOW_EFFECT",
+						"entity": {
+							"player": true
+						},
+						"offset": {
+							"x": 0,
+							"y": -5
+						},
+						"align": "CENTER",
+						"effect": {
+							"sheet": "dungeoncomplete",
+							"name": "dungeoncomplete"
+						},
+						"duration": 0,
+						"ignoreSlowMo": true
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"jumpHeight": "M",
+								"wait": true,
+								"ignoreSounds": true,
+								"type": "JUMP"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.2,
+								"type": "WAIT"
+							}, {
+								"type": "CLEAR_ANIMATION"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true
+					},{
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"type": "SET_RELATIVE_SPEED",
+								"value": 0.5
+							}, {
+								"type": "NAVIGATE_TO_POINT",
+								"target": {
+									"x": 385,
+									"y": 410,
+									"lvl": "1"
+								},
+								"precise": true
+							}, {
+								"type": "SET_FACE",
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 1
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true,
+						"keepState": true
+					}, {
+						"type": "WAIT",
+						"time": 0.05
+					}, {
+						"type": "SHOW_EFFECT",
+						"entity": {
+							"player": true
+						},
+						"effect": {
+							"sheet": "teleport",
+							"name": "hideDefault"
+						}
+					}, {
+						"type": "WAIT",
+						"time": 0.5
+					}, {
+						"type": "SET_TELEPORT_COLOR",
+						"color": "white"
+					}, {
+						"type": "SET_TELEPORT_TIME",
+						"fadeIn": 1,
+						"fadeOut": 1
+					}, {
+						"type": "TELEPORT",
+						"map": "rhombus-sqr.dng-end",
+						"marker": "eastEastTele"
+					}, {
+						"type": "WAIT",
+						"time": 4
+					}
+				],
+				"name": "ReplayDone",
+				"eventType": "CUTSCENE",
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-rhombus-dng && map.completeSign",
+				"endCondition": "false"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

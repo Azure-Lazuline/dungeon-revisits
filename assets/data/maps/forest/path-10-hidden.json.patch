@@ -1,0 +1,478 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "Prop",
+			"x": 435,
+			"y": 148,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 604,
+				"propType": {
+					"name": "groundProjector",
+					"sheet": "rhombus-interior"
+				},
+				"propAnim": "",
+				"spawnCondition": "plot.line >= 48000",
+				"hideCondition": ""
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "Prop",
+			"x": 438,
+			"y": 155,
+			"level": {
+				"level": 1,
+				"offset": 16
+			},
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 605,
+				"propType": {
+					"sheet": "trading-autumn",
+					"name": "signTall"
+				},
+				"propAnim": "stats",
+				"spawnCondition": "plot.line >= 48000",
+				"interact": {
+					"icon": "INFO",
+					"hoverText": {
+						"en_US": "Dungeon Revisit"
+					},
+					"event": [{
+							"type": "CHANGE_VAR_BOOL",
+							"varName": "tmp.dungeonReplay",
+							"changeType": "set",
+							"value": true
+						}
+					]
+				},
+				"hideCondition": ""
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "TeleportField",
+			"x": 487,
+			"y": 200,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"dir": "SOUTH",
+				"name": "revisitTele",
+				"gfxType": "AR",
+				"map": "arid-dng.second.f0.entrance",
+				"marker": "entrance",
+				"teleportLabel": {
+					"en_US": "To Vermillion Tower"
+				},
+				"longTeleCond": true,
+				"spawnCondition": "tmp.revisitTele"
+			}		
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "Marker",
+			"x": 487,
+			"y": 200,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"dir": "SOUTH",
+				"name": "revisitTeleMarker",
+				"spawnCondition": "true"
+			}		
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 752,
+			"y": 856,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"changeType": "set",
+						"value": true,
+						"varName": "g.vermillionTowerIntroNew"
+					},{
+						"type": "IF",
+						"condition": "reset-arid-dng",
+						"thenStep":[{
+							"changeType": "set",
+							"type": "CHANGE_VAR_BOOL",
+							"varName": "tmp.revisitTele",
+							"value": true
+						}]
+					}
+				],
+				"name": "dungeonReplay",
+				"eventType": "PARALLEL",
+				"startCondition": "true",
+				"endCondition": "false",
+				"triggerType": "ONCE_PER_ENTRY"
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 752,
+			"y": 856,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 606,
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"changeType": "set",
+						"value": false,
+						"varName": "tmp.dungeonReplay"
+					}, {
+						"name": "start",
+						"type": "LABEL"
+					}, {
+						"person": {
+							"person": "main.lea",
+							"expression": "DEFAULT"
+						},
+						"type": "ADD_MSG_PERSON",
+						"side": "RIGHT"
+					}, {
+						"0": [{
+								"type": "CLEAR_BOARD_MSG"
+							}, {
+								"type": "REMOVE_MSG_PERSON",
+								"person": "main.lea"
+							},{
+								"entity": {
+									"player": true
+								},
+								"action": [{
+										"face": "SOUTH_EAST",
+										"rotate": true,
+										"rotateSpeed": 2,
+										"type": "SET_FACE"
+									}
+								],
+								"type": "DO_ACTION",
+								"wait": false,
+								"keepState": true
+							}, {
+								"type": "IF",
+								"condition": "tmp.revisitTele",
+								"thenStep": [
+									{
+										"type": "CHANGE_VAR_BOOL",
+										"changeType": "set",
+										"value": false,
+										"varName": "tmp.revisitTele"
+									},{
+										"type": "WAIT",
+										"time": 0.55
+									},{
+										"type": "CHANGE_VAR_BOOL",
+										"changeType": "set",
+										"value": true,
+										"varName": "tmp.revisitTele"
+									}
+								]
+							}, {
+								"type": "CHANGE_VAR_BOOL",
+								"changeType": "set",
+								"value": true,
+								"varName": "tmp.revisitTele"
+							}, {
+								"type": "WAIT",
+								"time": 0.7
+							}, {
+								"type": "DUNGEON_REPLAY",
+								"dungeon": "arid-dng"
+							},{
+								"name": "end",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"1": [{
+								"type": "CHANGE_VAR_BOOL",
+								"changeType": "set",
+								"value": false,
+								"varName": "dungeonReplayTimerActive"
+							},{
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"2": [{
+								"type": "CHANGE_VAR_BOOL",
+								"changeType": "set",
+								"value": true,
+								"varName": "dungeonReplayTimerActive"
+							},{
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"3": [{
+								"type": "REMOVE_MSG_PERSON",
+								"person": "main.lea"
+							}, {
+								"type": "IF",
+								"withElse": true,
+								"condition": "plot.line >= 48000",
+								"thenStep": [{
+									"type": "SHOW_BOARD_MSG",
+									"text": {
+										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 70\\c[0]. All puzzles, enemies, events, and chests will be reset."
+									},
+									"side": "RIGHT",
+									"center": false,
+									"autoContinue": false
+								}],
+								"elseStep": [{
+									"type": "SHOW_BOARD_MSG",
+									"text": {
+										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 60\\c[0]. All puzzles, enemies, events, and chests will be reset."
+									},
+									"side": "RIGHT",
+									"center": false,
+									"autoContinue": false
+								}]
+							},{
+								"type": "SHOW_BOARD_MSG",
+								"text": {
+									"en_US": "While inside, you won't be able to use the dungeon's \\c[3]Element\\c[0] until you reclaim it, but all other Elements stay active."
+								},
+								"side": "RIGHT",
+								"center": false,
+								"autoContinue": false
+							}, {
+								"type": "SHOW_BOARD_MSG",
+								"text": {
+									"en_US": "You can leave the dungeon at any time and return to finish it later."
+								},
+								"side": "RIGHT",
+								"center": false,
+								"autoContinue": false
+							}, {
+								"type": "CLEAR_BOARD_MSG"
+							}, {
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"4": [{
+								"name": "end",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"type": "SHOW_CHOICE",
+						"person": {
+							"person": "main.lea",
+							"expression": "DEFAULT"
+						},
+						"options": [{
+								"label": {
+									"en_US": "Start Dungeon"
+								}
+							}, {
+								"label": {
+									"en_US": "Timer \\c[2][On]\\c[0]"
+								},
+								"showCondition": "dungeonReplayTimerActive"
+							}, {
+								"label": {
+									"en_US": "Timer \\c[1][Off]\\c[0]"
+								},
+								"showCondition": "!dungeonReplayTimerActive"
+							}, {
+								"label": {
+									"en_US": "\\c[3][Help]\\c[0]"
+								}
+							}, {
+								"label": {
+									"en_US": "Cancel"
+								}
+							}
+						]
+					}, {
+						"name": "end",
+						"type": "LABEL"
+					}
+				],
+				"name": "dungeonReplay",
+				"eventType": "CUTSCENE",
+				"startCondition": "tmp.dungeonReplay",
+				"endCondition": "false",
+				"triggerType": "ALWAYS"
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 752,
+			"y": 856,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"changeType": "set",
+						"value": false,
+						"varName": "g.vermillionTowerReturnNew"
+					}, {
+						"value": "NONE",
+						"type": "SET_MOBILITY_BLOCK"
+					},{
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"newPos": {
+									"x": 500,
+									"y": 220,
+									"lvl": {
+										"level": "1",
+										"offset": 280
+									}
+								},
+								"type": "SET_POS"
+							}, {
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}, {
+								"value": 20,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"value": 0,
+								"type": "SET_Z_VEL"
+							}, {
+								"variance": 4,
+								"accel": 1,
+								"speed": 100,
+								"type": "SET_FLOAT_PARAMS"
+							}, {
+								"type": "SET_ZOOM_BLUR",
+								"zoomType": "LIGHT",
+								"fadeIn": 0.1,
+								"duration": 3.0,
+								"fadeOut": 2.0
+							}, {
+								"entity": {
+									"player": true
+								},
+								"duration": -1,
+								"align": "BOTTOM",
+								"group": "",
+								"wait": false,
+								"waitSkip": 0,
+								"type": "SHOW_EFFECT",
+								"effect": {
+									"sheet": "scene.designer",
+									"name": "playerFloat"
+								},
+								"offset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								}
+							}, {
+								"type": "WAIT",
+								"time": 4
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"type": "CLEAR_EFFECTS"
+					},{
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"value": 0,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"type": "WAIT_UNTIL_ON_GROUND"
+							}, {
+								"wait": false,
+								"type": "SHOW_EXTERN_ANIM",
+								"anim": {
+									"sheet": "player-poses",
+									"name": "landOnGround"
+								}
+							}, {
+								"type": "WAIT",
+								"time": 0.5
+							}, {
+								"type": "CLEAR_ANIMATION"
+							}, {
+								"wait": true,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "preIdle"
+							}
+						],
+						"repeating": false,
+						"wait": true,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}
+				],
+				"name": "dungeonReplayReturn",
+				"eventType": "CUTSCENE",
+				"startCondition": "g.vermillionTowerReturnNew",
+				"endCondition": "false",
+				"triggerType": "ALWAYS"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

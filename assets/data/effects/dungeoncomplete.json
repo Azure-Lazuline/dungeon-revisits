@@ -1,0 +1,133 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS":
+    {
+        "SUB": [
+        {
+            "name": "SHOCKWAVE_BIG",
+            "sheet":
+            {
+                "src": "media\/entity\/effects\/lighter-particle-big.png",
+                "offX": 0,
+                "offY": 0,
+                "width": 96,
+                "height": 96
+            },
+            "guiSprites": false,
+            "renderMode": "lighter",
+            "time": 0.4,
+            "frames": [0]
+        },{
+            "name": "NEUTRAL_DOT1",
+            "sheet":
+            {
+                "src": "media\/entity\/effects\/particles1.png ",
+                "offX": 24,
+                "offY": 8,
+                "width": 8,
+                "height": 8
+            },
+            "guiSprites": true,
+            "renderMode": "lighter",
+            "time": 0.4,
+            "flipY": true,
+            "frames": [0]
+        },{
+			"name": "CIRCLE_BIG",
+			"sheet": {
+				"src": "media\/entity\/effects\/lighter-particle.png",
+				"offX": 0,
+				"offY": 0,
+				"width": 48,
+				"height": 48
+			},
+			"guiSprites": true,
+			"renderMode": "lighter",
+			"time": 0.4,
+			"frames": [0]
+		}]
+    },
+    "EFFECTS":
+    {
+		"dungeoncomplete": [{
+				"volume": 1.0,
+				"global": false,
+				"loop": false,
+				"speed": 1.7,
+				"type": "PLAY_SOUND",
+				"sound": "media\/sound\/battle\/shiny-effect.ogg"
+			}, {
+				"volume": 1.0,
+				"global": false,
+				"loop": false,
+				"speed": 1.2,
+				"type": "PLAY_SOUND",
+				"sound": "media\/sound\/battle\/shiny-effect.ogg"
+			}, {
+				"volume": 1.0,
+				"global": false,
+				"loop": false,
+				"speed": 1.2,
+				"type": "PLAY_SOUND",
+				"sound": "media\/sound\/battle\/enemies\/hedgehog\/hedgehog-squeak-1.ogg"
+			}, {
+				"useTargetAngle": false,
+				"keepAngleSync": false,
+				"pAlpha": {
+					"init": 1,
+					"start": {
+						"value": 0,
+						"spline": ""
+					}
+				},
+				"pScale": {
+					"init": {
+						"x": 0.05,
+						"y": 0.05
+					},
+					"start": {
+						"value": {
+							"x": 2.40,
+							"y": 2.40
+						},
+						"spline": ""
+					}
+				},
+				"moveWithTarget": 0,
+				"particleDuration": 0.3,
+				"cancelable": true,
+				"anim": "CIRCLE_BIG",
+				"type": "PLAY_ANIM"
+			}, {
+				"numParticles": 15,
+				"duration": 0,
+				"centralAngle": 1,
+				"startDist": 4,
+				"particleRotate": true,
+				"moveDist": 88,
+				"moveVariance": 40,
+				"keySpline": "EASE_OUT",
+				"collision": false,
+				"pScale": {
+					"init": {
+						"x": 0.15,
+						"y": 0.15
+					},
+					"start": {
+						"value": {
+							"x": 0,
+							"y": 0.6
+						},
+						"spline": "EASE_OUT"
+					}
+				},
+				"moveWithTarget": 0,
+				"particleDuration": 0.22,
+				"particleDurVariance": 0.12,
+				"cancelable": true,
+				"anim": "CIRCLE_BIG",
+				"type": "OFFSET_PARTICLE_CIRCLE"
+			}
+		]
+	}
+}
