@@ -42,7 +42,7 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 					delete ig.vars.storage.maps[map][flagkey]; //unset the flag
 				}
 			}
-			//ig.vars.storage.maps[map].hiddenUntilRevisit = true; //mark map as empty
+			ig.vars.storage.maps[map].hiddenUntilRevisit = true; //mark map as empty
 		}
 	}
 	
