@@ -1,0 +1,68 @@
+{
+	"DOCTYPE": "PROP_SHEET",
+	"props": [{
+			"name": "groundProjector",
+			"size": {
+				"x": 24,
+				"y": 24,
+				"z": 2
+			},
+			"collType": "BLOCK",
+			"fix": {
+				"gfx": "media\/map\/dungeon-revisits.png",
+				"x": 0,
+				"y": 32,
+				"w": 32,
+				"h": 30,
+				"flipX": false,
+				"shape": "Z_FLAT"
+			}
+	},{
+			"name": "signTall",
+			"size": {
+				"x": 16,
+				"y": 8,
+				"z": 32
+			},
+			"collType": "IGNORE",
+			"effects": {
+				"sheet": "ar",
+				"show": "taskSignShow",
+				"hide": "taskSignHide"
+			},
+			"anims": {
+				"namedSheets": {
+					"signs": {
+						"src": "media\/map\/dungeon-revisits.png",
+						"width": 16,
+						"height": 32,
+						"offX": 0,
+						"offY": 0
+					}
+				},
+				"sheet": "signs",
+				"frames": [0, 0, 0, 0, 0, 0],
+				"shape": "Y_FLAT",
+				"framesGfxOffset": [0, -1, 0, -1, 0, 0, 0, 1, 0, 1, 0, 0],
+				"time": 0.2,
+				"repeat": true,
+				"SUB": [{
+						"framesAlpha": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+						"SUB": [{
+								"name": "default",
+								"tileOffset": 0
+							}
+						]
+					}, {
+						"renderMode": "lighter",
+						"SUB": [{
+								"name": "default",
+								"tileOffset": 0
+							}
+						]
+					}
+				]
+			}
+		}
+	]
+}

@@ -17,7 +17,7 @@
 				"mapId": 604,
 				"propType": {
 					"name": "groundProjector",
-					"sheet": "rhombus-interior"
+					"sheet": "dungeon-revisits"
 				},
 				"propAnim": "",
 				"spawnCondition": "plot.line >= 19200",
@@ -29,7 +29,7 @@
 		"content":
 		{
 			"type": "Prop",
-			"x": 466,
+			"x": 467,
 			"y": 283,
 			"level": {
 				"level": 1,
@@ -42,10 +42,10 @@
 				},
 				"mapId": 605,
 				"propType": {
-					"sheet": "trading-autumn",
+					"sheet": "dungeon-revisits",
 					"name": "signTall"
 				},
-				"propAnim": "stats",
+				"propAnim": "default",
 				"spawnCondition": "plot.line >= 19200",
 				"interact": {
 					"icon": "INFO",
