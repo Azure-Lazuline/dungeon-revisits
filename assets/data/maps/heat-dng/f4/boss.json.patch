@@ -36,6 +36,11 @@
 							"player": true
 						},
 						"action": [{
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}, {
 								"followUp": "levelUpStand",
 								"wait": false,
 								"viaWalkConfig": false,

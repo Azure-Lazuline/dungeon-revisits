@@ -407,6 +407,11 @@
 							"player": true
 						},
 						"action": [{
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}, {
 								"followUp": "levelUpStand",
 								"wait": false,
 								"viaWalkConfig": false,
@@ -566,11 +571,6 @@
 							"player": true
 						},
 						"action": [{
-								"face": "SOUTH",
-								"rotate": true,
-								"rotateSpeed": 3,
-								"type": "SET_FACE"
-							},{
 								"wait": false,
 								"viaWalkConfig": false,
 								"type": "SHOW_ANIMATION",

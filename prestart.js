@@ -315,6 +315,7 @@ ig.Game.inject({
 			else
 				sc.inventory.updateScaledEquipment(sc.model.player.level);
 		}
+		
 	}
 });
 
@@ -359,7 +360,7 @@ sc.PlayerModel.inject({
 	  if (sc && sc.map && sc.map.currentPlayerArea)
 	  {
 		  var area = sc.map.currentPlayerArea.path;
-		  if (ig.vars.storage[area] && ig.vars.storage[area].disabledElement + 8 == a)
+		  if (ig.vars.storage[area] && ig.vars.storage[area].disabledElement != null && ig.vars.storage[area].disabledElement + 8 == a)
 			  return false;
 	  }
 	  return this.parent(a);
