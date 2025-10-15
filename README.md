@@ -2,7 +2,7 @@
 
 ![](https://github.com/Azure-Lazuline/dungeon-revisits/blob/main/screenshot.png?raw=true)
 
-This puts a terminal in front of every dungeon that lets you replay it from the beginning, scaled up to endgame levels. There's actually some leftover unused code in the game itself to do this, but they only just barely started. I decided to spend a few days implementing it myself!
+This puts a terminal in front of every dungeon which lets you replay it from the beginning, scaled up to endgame levels. There's actually some leftover unused code in the game itself to do this, but they only just barely started. I decided to spend a few days implementing it myself!
 
 This resets every puzzle, enemy, event, and chest. When replaying an Element dungeon, you need to reclaim the element from its original spot before you're allowed to use it in the dungeon. You can still use it everywhere else if you leave temporarily though.
 
