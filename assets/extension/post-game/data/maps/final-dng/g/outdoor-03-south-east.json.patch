@@ -1,0 +1,29 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 660,
+			"y": 1632,
+			"level": 1,
+			"settings": {
+				"name": "BuggyBeGone",
+				"eventType": "CUTSCENE",
+				"endCondition": "false",
+				"event": [{
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.buggyGone",
+						"value": true
+					}
+				],
+				"triggerType": "ONCE_PER_ENTRY",
+				"startCondition": "reset-final-dng"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

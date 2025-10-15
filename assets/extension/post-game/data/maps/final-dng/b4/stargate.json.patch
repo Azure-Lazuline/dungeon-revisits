@@ -1,0 +1,648 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 720,
+			"y": 984,
+			"level": 1,
+			"settings": {
+				"name": "GateCharge",
+				"eventType": "CUTSCENE",
+				"endCondition": "map.pillarsOn",
+				"event": [{
+						"type": "PAUSE_TIMER",
+						"name": "dungeon-replay-final-dng"
+					},{
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.ferroGateAbsorbNew",
+						"value": false
+					}, {
+						"entity": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"duration": -1,
+						"align": "BOTTOM",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "puzzle.ferro-gate",
+							"name": "gateCharge1"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 12
+						}
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.2
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"type": "SET_RELATIVE_SPEED",
+								"value": 1
+							}, {
+								"target": {
+									"x": 560,
+									"y": 1168,
+									"lvl": "1"
+								},
+								"maxTime": 0,
+								"distance": 120,
+								"precise": false,
+								"planOnly": false,
+								"teleportOnFail": false,
+								"type": "NAVIGATE_TO_POINT"
+							}, {
+								"type": "SET_RELATIVE_SPEED",
+								"value": 0.5
+							}, {
+								"target": {
+									"x": 560,
+									"y": 1168,
+									"lvl": "1"
+								},
+								"maxTime": 0,
+								"distance": 0,
+								"precise": true,
+								"planOnly": false,
+								"teleportOnFail": false,
+								"type": "NAVIGATE_TO_POINT"
+							}, {
+								"face": "NORTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"pos": {
+							"x": 560,
+							"y": 1076
+						},
+						"speed": "FAST",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"action": [{
+								"variance": 0,
+								"accel": 4,
+								"speed": 300,
+								"type": "SET_FLOAT_PARAMS"
+							}, {
+								"value": 12,
+								"type": "SET_FLOAT_HEIGHT"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"duration": -1,
+						"align": "BOTTOM",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "puzzle.ferro-gate",
+							"name": "gateCharge2"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 12
+						}
+					}, {
+						"zoomType": "LIGHT",
+						"fadeIn": 1.5,
+						"duration": 0.5,
+						"fadeOut": 0.2,
+						"target": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"align": "BOTTOM",
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 12
+						},
+						"type": "SET_ZOOM_BLUR"
+					}, {
+						"zoom": 1.5,
+						"duration": 3,
+						"transition": "EASE_IN_OUT",
+						"type": "SET_CAMERA_ZOOM"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 3.5
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.pillarsOn",
+						"value": true
+					}, {
+						"zoom": 2,
+						"duration": 0.2,
+						"transition": "EASE_OUT",
+						"type": "SET_CAMERA_ZOOM"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"npc": {
+							"global": true,
+							"name": "ferroGate"
+						},
+						"type": "RESET_NPC"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.6
+					}, {
+						"bgm": "oldHideout1",
+						"volume": 1,
+						"mode": "IMMEDIATELY",
+						"type": "PLAY_BGM"
+					}, {
+						"zoom": 1,
+						"duration": 2,
+						"transition": "EASE_IN_OUT",
+						"type": "SET_CAMERA_ZOOM"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 2.5
+					}, {
+						"pos": {
+							"x": 560,
+							"y": 880
+						},
+						"speed": "NORMAL",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0.3,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "spheroGod"
+						},
+						"duration": 0,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramFlash2"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.5
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "tmp.gods",
+						"value": 3
+					}, {
+						"entity": {
+							"player": true
+						},
+						"position": {
+							"x": 560,
+							"y": 972,
+							"lvl": "1"
+						},
+						"type": "SET_ENTITY_POS"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.1
+					}, {
+						"entity": {
+							"player": true
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramDarkness2"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "spheroGod"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramBigGod2"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "heatGod"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramBigGodSub"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "coldGod"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramBigGodSub"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "waveGod"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramBigGodSub"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"entity": {
+							"global": true,
+							"name": "shockGod"
+						},
+						"duration": -1,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramBigGodSub"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 1.0
+					}, {
+						"type": "DUNGEON_REPLAY_DONE",
+						"dungeon": "final-dng"
+					}, {
+						"type": "STOP_SKIP_MODE",
+					}, {
+						"type": "PLAY_SOUND",
+						"sound": "media/sound/battle/level-up.ogg",
+						"volume": 1
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"followUp": "levelUpStand",
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPre"
+							}, {
+								"type": "WAIT",
+								"time": -1
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": true,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"type": "WAIT",
+						"time": 0.6
+					}, {
+						"type": "SHOW_BOARD_MSG",
+						"center": true,
+						"side": "",
+						"text": {
+							"en_US": "===DungeonReplayEnd===",
+							"de_DE": "",
+							"ja_JP": "",
+							"ko_KR": "",
+							"zh_CN": "",
+							"zh_TW": ""
+						}
+					}, {
+						"type": "CLEAR_BOARD_MSG"
+					}, {
+						"mode": "SLOW",
+						"type": "PAUSE_BGM"
+					}, {
+						"volume": 1,
+						"name": "",
+						"loop": false,
+						"offset": 0,
+						"startTime": 0,
+						"type": "PLAY_SOUND",
+						"sound": "media\/sound\/scenes\/swoosh-fall-long.ogg"
+					}, {
+						"alpha": 1,
+						"time": 2,
+						"lighter": true,
+						"type": "SET_OVERLAY",
+						"color": "white"
+					}, {
+						"speed": "SLOWEST",
+						"transition": "EASE_IN_OUT",
+						"wait": false,
+						"waitSkip": 0,
+						"zoom": 1,
+						"type": "RESET_CAMERA"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 1.7
+					}, {
+						"entity": {
+							"global": true,
+							"name": "spheroGod"
+						},
+						"duration": 0,
+						"align": "CENTER",
+						"group": "",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "SHOW_EFFECT",
+						"effect": {
+							"sheet": "map.rh-quest-hub",
+							"name": "hologramFlash"
+						},
+						"offset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						}
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.7
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "tmp.gods",
+						"value": 0
+					}, {
+						"entity": {
+							"player": true
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "coldGod"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "heatGod"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "shockGod"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "spheroGod"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"entity": {
+							"global": true,
+							"name": "waveGod"
+						},
+						"type": "CLEAR_EFFECTS"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.5
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.dngDone",
+						"value": true
+					}, {
+						"mapSounds": "FINAL_DUNGEON_INSIDE",
+						"type": "SET_MAP_SOUNDS"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "tmp.fsThere",
+						"value": false
+					}, {
+						"alpha": 0,
+						"time": 1,
+						"lighter": true,
+						"type": "SET_OVERLAY",
+						"color": "white"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.8
+					}, {
+						"type": "WAIT",
+						"time": 0.25
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"face": "SOUTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							},{
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.3,
+								"type": "WAIT"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpJump"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true,
+						"keepState": true
+					}, {
+						"type": "SHOW_EFFECT",
+						"entity": {
+							"player": true
+						},
+						"offset": {
+							"x": 0,
+							"y": -5
+						},
+						"align": "CENTER",
+						"effect": {
+							"sheet": "dungeoncomplete",
+							"name": "dungeoncomplete"
+						},
+						"duration": 0,
+						"ignoreSlowMo": true
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"jumpHeight": "M",
+								"wait": true,
+								"ignoreSounds": true,
+								"type": "JUMP"
+							}, {
+								"wait": false,
+								"viaWalkConfig": false,
+								"type": "SHOW_ANIMATION",
+								"anim": "levelUpPreJump"
+							}, {
+								"time": 0.2,
+								"type": "WAIT"
+							}, {
+								"type": "CLEAR_ANIMATION"
+							}
+						],
+						"type": "DO_ACTION",
+						"wait": true
+					}, {
+						"mode": "IMMEDIATELY",
+						"delayed": false,
+						"type": "RESUME_DEFAULT_BGM"
+					}, {
+						"type": "WAIT",
+						"time": 0.3
+					}
+				],
+				"triggerType": "ALWAYS",
+				"loadCondition": {
+					"custom": "true"
+				},
+				"startCondition": "tmp.ferroGateAbsorbNew"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

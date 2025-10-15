@@ -1,0 +1,11 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+		}
+	},{
+		"type": "EXIT"
+}]

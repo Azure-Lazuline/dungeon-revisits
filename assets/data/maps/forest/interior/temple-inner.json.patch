@@ -1,0 +1,120 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 560,
+			"y": 656,
+			"level": 1,
+			"settings": {
+				"name": "onEnterNew",
+				"eventType": "CUTSCENE",
+				"startCondition": "reset-final-dng && redoDungeonIntro",
+				"endCondition": "false",
+				"event": [{
+						"alpha": 1,
+						"time": 0,
+						"lighter": false,
+						"type": "SET_OVERLAY",
+						"color": "white"
+					}, {
+						"pos": {
+							"x": 384,
+							"y": 976
+						},
+						"speed": "IMMEDIATELY",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"newPos": {
+									"x": 384,
+									"y": 928,
+									"lvl": "1"
+								},
+								"type": "SET_POS"
+							}, {
+								"type": "SET_RELATIVE_SPEED",
+								"value": 1
+							}, {
+								"target": {
+									"x": 384,
+									"y": 784,
+									"lvl": "1"
+								},
+								"precise": false,
+								"forceTime": false,
+								"type": "MOVE_TO_POINT"
+							}, {
+								"type": "SET_RELATIVE_SPEED",
+								"value": 0.5
+							}, {
+								"target": {
+									"x": 384,
+									"y": 712,
+									"lvl": "1"
+								},
+								"precise": true,
+								"forceTime": false,
+								"type": "MOVE_TO_POINT"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"alpha": 0,
+						"time": 1,
+						"lighter": true,
+						"type": "SET_OVERLAY",
+						"color": "white"
+					}, {
+						"pos": {
+							"x": 384,
+							"y": 468
+						},
+						"speed": "NORMAL",
+						"transition": "EASE_OUT",
+						"wait": true,
+						"waitSkip": 0.4,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "redoDungeonIntro",
+						"value": false
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_BOOL",
+						"varName": "map.upgradeVisible",
+						"value": true
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 0.6
+					}, {
+						"speed": "NORMAL",
+						"transition": "EASE_IN_OUT",
+						"wait": false,
+						"waitSkip": 0,
+						"type": "RESET_CAMERA"
+					}
+				],
+				"triggerType": "ALWAYS",
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

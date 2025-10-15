@@ -1,0 +1,119 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 660,
+			"y": 1632,
+			"level": 1,
+			"settings": {
+				"name": "IntroSceneNew",
+				"eventType": "CUTSCENE",
+				"endCondition": "plot.finalDngRevisit >= 105",
+				"event": [{
+						"alpha": 1,
+						"time": 0,
+						"lighter": false,
+						"type": "SET_OVERLAY",
+						"color": "WHITE"
+					}, {
+						"pos": {
+							"x": 640,
+							"y": 860
+						},
+						"speed": "IMMEDIATELY",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"alpha": 0,
+						"time": 2,
+						"lighter": true,
+						"type": "SET_OVERLAY",
+						"color": "WHITE"
+					}, {
+						"pos": {
+							"x": 640,
+							"y": 1580
+						},
+						"speed": "SLOW",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 2.5,
+						"zoom": 1,
+						"type": "SET_CAMERA_POS"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"newPos": {
+									"x": 640,
+									"y": 1816,
+									"lvl": "1"
+								},
+								"type": "SET_POS"
+							}, {
+								"type": "SET_RELATIVE_SPEED",
+								"value": 0.5
+							}, {
+								"target": {
+									"x": 640,
+									"y": 1604,
+									"lvl": "1"
+								},
+								"precise": true,
+								"forceTime": false,
+								"type": "MOVE_TO_POINT"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"ignoreSlowDown": false,
+						"type": "WAIT",
+						"time": 2
+					}, {
+						"speed": "NORMAL",
+						"transition": "EASE_IN_OUT",
+						"wait": true,
+						"waitSkip": 0.5,
+						"type": "RESET_CAMERA"
+					}, {
+						"entity": {
+							"player": true
+						},
+						"action": [{
+								"face": "NORTH",
+								"rotate": true,
+								"rotateSpeed": 3,
+								"type": "SET_FACE"
+							}
+						],
+						"repeating": false,
+						"wait": false,
+						"keepState": false,
+						"immediately": false,
+						"type": "DO_ACTION"
+					}, {
+						"changeType": "set",
+						"type": "CHANGE_VAR_NUMBER",
+						"varName": "plot.finalDngRevisit",
+						"value": 105
+					}
+				],
+				"triggerType": "ALWAYS",
+				"startCondition": "reset-final-dng"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]

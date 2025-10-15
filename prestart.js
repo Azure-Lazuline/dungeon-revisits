@@ -105,6 +105,30 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 	{
 		ig.vars.storage.plot.metaSpace = null; //the flag for the skip prompts
 	}
+	if (this.dungeon == "final-dng")
+	{
+		ig.vars.storage["redoDungeonIntro"] = true;
+
+		ig.vars.storage.maps["forest/interior/temple-inner"] = {};
+		ig.vars.storage.g["final-dng"] = {};
+		
+		sc.map.activeLandmarks["final-dng"]["center"] = null;
+
+		ig.vars.storage.plot.finalDng = 1000;
+		ig.vars.storage.plot.finalDngRevisit = 0;
+
+		if (ig.vars.storage.maps["finalDng/g/outdoor-03SouthWest"] == null) ig.vars.storage.maps["finalDng/g/outdoor-03SouthWest"] = {};
+		ig.vars.storage.maps["finalDng/g/outdoor-03SouthWest"].lukeMoved = true;
+		ig.vars.storage.maps["finalDng/g/outdoor-03SouthWest"].ctronMoved = true;
+		if (ig.vars.storage.maps["finalDng/g/outdoor-04NorthEast"] == null) ig.vars.storage.maps["finalDng/g/outdoor-04NorthEast"] = {};
+		ig.vars.storage.maps["finalDng/g/outdoor-04NorthEast"].apolloGone = true;
+		if (ig.vars.storage.maps["finalDng/g/outdoor-04NorthWest"] == null) ig.vars.storage.maps["finalDng/g/outdoor-04NorthWest"] = {};
+		ig.vars.storage.maps["finalDng/g/outdoor-04NorthWest"].apolloMoved = true;
+		ig.vars.storage.maps["finalDng/g/outdoor-04NorthWest"].shizukaMoved = true;
+		
+		if (ig.vars.storage.maps["finalDng/b2/bridge"] == null) ig.vars.storage.maps["finalDng/b2/bridge"] = {};
+		ig.vars.storage.maps["finalDng/b2/bridge"]._entity73_triggered = true; //C'tron dialogue
+	}
 
 	if (sc.newgame.get("keep-elements"))
 		ig.vars.storage[this.dungeon].disabledElement = null;
@@ -368,6 +392,10 @@ ig.EVENT_STEP.CHANGE_VAR_NUMBER.inject({
 		{ //don't overwrite the plot!
 			return;
 		}
+		if (this.varName == "plot.finalDng" && ig.vars.storage[area] && ig.vars.storage[area].azureDungeonReset)
+		{
+			this.varName = "plot.finalDngRevisit";
+		}
 		return this.parent();
 	}
 });
@@ -466,5 +494,15 @@ ig.EVENT_STEP.TELEPORT.inject({
 			return;
 		}
 		this.parent();
+	}
+});
+
+ig.Vars.inject({
+	set(a, b){
+		if (a == "tmp.ferroGateAbsorb" && ig.vars.get("reset-final-dng"))
+		{
+			a = "tmp.ferroGateAbsorbNew";
+		}
+		this.parent(a, b);
 	}
 });

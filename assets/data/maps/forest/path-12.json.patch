@@ -1,0 +1,294 @@
+[{	
+		"type": "ENTER",
+		"index": ["entities"]
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "Prop",
+			"x": 551,
+			"y": 406,
+			"level": 2,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 604,
+				"propType": {
+					"name": "groundProjector",
+					"sheet": "dungeon-revisits"
+				},
+				"propAnim": "",
+				"spawnCondition": "plot.line >= 48000",
+				"hideCondition": ""
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "Prop",
+			"x": 555,
+			"y": 413,
+			"level": {
+				"level": 2,
+				"offset": 16
+			},
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 605,
+				"propType": {
+					"sheet": "dungeon-revisits",
+					"name": "signTall"
+				},
+				"propAnim": "default",
+				"spawnCondition": "plot.line >= 48000",
+				"interact": {
+					"icon": "INFO",
+					"hoverText": {
+						"en_US": "Start Over -\nKu'lero Temple"
+					},
+					"event": [{
+							"type": "CHANGE_VAR_BOOL",
+							"varName": "tmp.dungeonReplay",
+							"changeType": "set",
+							"value": true
+						}
+					]
+				},
+				"hideCondition": ""
+			}
+		}
+	},{
+		"type": "ADD_ARRAY_ELEMENT",
+		"content":
+		{
+			"type": "EventTrigger",
+			"x": 752,
+			"y": 856,
+			"level": 1,
+			"settings": {
+				"size": {
+					"x": 16,
+					"y": 16
+				},
+				"mapId": 606,
+				"event": [{
+						"type": "CHANGE_VAR_BOOL",
+						"changeType": "set",
+						"value": false,
+						"varName": "tmp.dungeonReplay"
+					}, {
+						"name": "start",
+						"type": "LABEL"
+					}, {
+						"person": {
+							"person": "main.lea",
+							"expression": "DEFAULT"
+						},
+						"type": "ADD_MSG_PERSON",
+						"side": "RIGHT"
+					}, {
+						"0": [{
+								"type": "CLEAR_BOARD_MSG"
+							}, {
+								"type": "REMOVE_MSG_PERSON",
+								"person": "main.lea"
+							},{
+								"entity": {
+									"player": true
+								},
+								"action": [{
+										"type": "SET_RELATIVE_SPEED",
+										"value": 0.5
+									}, {
+										"type": "NAVIGATE_TO_POINT",
+										"target": {
+											"x": 649,
+											"y": 446,
+											"lvl": "1"
+										}
+									}, {
+										"type": "SET_FACE",
+										"face": "NORTH",
+										"rotate": true,
+										"rotateSpeed": 1
+									}
+								],
+								"type": "DO_ACTION",
+								"wait": false,
+								"keepState": true
+							}, {
+								"type": "WAIT",
+								"time": 0.2
+							}, {
+								"type": "DUNGEON_REPLAY",
+								"dungeon": "final-dng"
+							}, {
+								"type": "WAIT_UNTIL_ACTION_DONE",
+								"entity": {
+									"player": true
+								}
+							}, {
+								"type": "OPEN_DOOR",
+								"door": {
+									"global": true,
+									"name": "dngEntrance"
+								}
+							}, {
+								"type": "WAIT",
+								"time": 1.3
+							}, {
+								"entity": {
+									"player": true
+								},
+								"action": [{
+										"type": "SET_SLIP_THROUGH",
+										"value": true
+									}, {
+										"type": "SET_RELATIVE_SPEED",
+										"value": 1
+									}, {
+										"type": "MOVE_FORWARD",
+										"time": 5
+									}
+								],
+								"type": "DO_ACTION",
+								"keepState": true
+							}, {
+								"type": "SET_TELEPORT_COLOR",
+								"color": "white"
+							}, {
+								"type": "SET_TELEPORT_TIME",
+								"fadeIn": 1,
+								"fadeOut": 1
+							}, {
+								"type": "TELEPORT",
+								"map": "forest.interior.temple-inner",
+								"marker": "entrance"
+							}, {
+								"type": "WAIT",
+								"time": 4
+							}
+						],
+						"1": [{
+								"type": "CHANGE_VAR_BOOL",
+								"changeType": "set",
+								"value": false,
+								"varName": "dungeonReplayTimerActive"
+							},{
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"2": [{
+								"type": "CHANGE_VAR_BOOL",
+								"changeType": "set",
+								"value": true,
+								"varName": "dungeonReplayTimerActive"
+							},{
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"3": [{
+								"type": "REMOVE_MSG_PERSON",
+								"person": "main.lea"
+							}, {
+								"type": "IF",
+								"withElse": true,
+								"condition": "plot.line >= 48000",
+								"thenStep": [{
+									"type": "SHOW_BOARD_MSG",
+									"text": {
+										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 70\\c[0]. All puzzles, enemies, events, and chests will be reset."
+									},
+									"side": "RIGHT",
+									"center": false,
+									"autoContinue": false
+								}],
+								"elseStep": [{
+									"type": "SHOW_BOARD_MSG",
+									"text": {
+										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 60\\c[0]. All puzzles, enemies, events, and chests will be reset."
+									},
+									"side": "RIGHT",
+									"center": false,
+									"autoContinue": false
+								}]
+							},{
+								"type": "SHOW_BOARD_MSG",
+								"text": {
+									"en_US": "While inside, you won't be able to use the dungeon's \\c[3]Element\\c[0] until you reclaim it, but all other Elements stay active."
+								},
+								"side": "RIGHT",
+								"center": false,
+								"autoContinue": false
+							}, {
+								"type": "SHOW_BOARD_MSG",
+								"text": {
+									"en_US": "You can leave the dungeon at any time and return to finish it later."
+								},
+								"side": "RIGHT",
+								"center": false,
+								"autoContinue": false
+							}, {
+								"type": "CLEAR_BOARD_MSG"
+							}, {
+								"name": "start",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"4": [{
+								"name": "end",
+								"type": "GOTO_LABEL"
+							}
+						],
+						"type": "SHOW_CHOICE",
+						"person": {
+							"person": "main.lea",
+							"expression": "DEFAULT"
+						},
+						"options": [{
+								"label": {
+									"en_US": "Start Dungeon"
+								}
+							}, {
+								"label": {
+									"en_US": "Timer \\c[2][On]\\c[0]"
+								},
+								"showCondition": "dungeonReplayTimerActive"
+							}, {
+								"label": {
+									"en_US": "Timer \\c[1][Off]\\c[0]"
+								},
+								"showCondition": "!dungeonReplayTimerActive"
+							}, {
+								"label": {
+									"en_US": "\\c[3][Help]\\c[0]"
+								}
+							}, {
+								"label": {
+									"en_US": "Cancel"
+								}
+							}
+						]
+					}, {
+						"name": "end",
+						"type": "LABEL"
+					}
+				],
+				"name": "dungeonReplay",
+				"eventType": "CUTSCENE",
+				"startCondition": "tmp.dungeonReplay",
+				"endCondition": "false",
+				"triggerType": "ALWAYS"
+			}
+		}
+	},{
+		"type": "EXIT"
+}]
