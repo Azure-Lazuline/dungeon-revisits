@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Start Over -\nTemple Mine"
+						"en_US": "Dungeon Revisit:\n\\c[3]Temple Mine"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",

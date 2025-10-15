@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Start Over -\nZir'vitar Temple"
+						"en_US": "Dungeon Revisit:\n\\c[3]Zir'vitar Temple"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",

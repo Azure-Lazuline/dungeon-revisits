@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Start Over -\nFaj'ro Temple"
+						"en_US": "Dungeon Revisit:\n\\c[3]Faj'ro Temple"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",

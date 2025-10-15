@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Start Over -\nRhombus Dungeon"
+						"en_US": "Dungeon Revisit:\n\\c[3]Rhombus Dungeon"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",

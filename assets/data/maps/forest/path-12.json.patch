@@ -6,8 +6,8 @@
 		"content":
 		{
 			"type": "Prop",
-			"x": 551,
-			"y": 406,
+			"x": 580,
+			"y": 374,
 			"level": 2,
 			"settings": {
 				"size": {
@@ -29,8 +29,8 @@
 		"content":
 		{
 			"type": "Prop",
-			"x": 555,
-			"y": 413,
+			"x": 584,
+			"y": 381,
 			"level": {
 				"level": 2,
 				"offset": 16
@@ -50,7 +50,7 @@
 				"interact": {
 					"icon": "INFO",
 					"hoverText": {
-						"en_US": "Start Over -\nKu'lero Temple"
+						"en_US": "Dungeon Revisit:\n\\c[3]Ku'lero Temple"
 					},
 					"event": [{
 							"type": "CHANGE_VAR_BOOL",
