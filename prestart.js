@@ -32,7 +32,10 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 				if (flagkey == "dokuTaken" || flagkey == "pickaxeTaken" || flagkey == "dynamiteTaken" || flagkey == "tntTaken")
 					dontRemove = true;
 				
-				if(dontRemove)
+				if (map == "finalDng/b4/stargate" && flagkey == "chest_305") //macguffin coin chest
+					dontRemove = true;
+				
+				if (dontRemove)
 				{
 					//console.warn("skipped " + map + " " + flagkey);
 				}
@@ -268,7 +271,7 @@ ig.ENTITY.Enemy.inject({
 			
 			var levelTarget = 60;
 			if (ig.vars.get("plot.line") >= 48000)
-				levelTarget = 70;
+				levelTarget = 75;
 			
 			if (levelTarget > this.getLevel())
 			{
@@ -309,7 +312,7 @@ ig.Game.inject({
 			{
 				var levelTarget = 60;
 				if (ig.vars.get("plot.line") >= 48000)
-					levelTarget = 70;
+					levelTarget = 75;
 				sc.inventory.updateScaledEquipment(levelTarget);
 			}
 			else
@@ -396,6 +399,17 @@ ig.EVENT_STEP.CHANGE_VAR_NUMBER.inject({
 		if (this.varName == "plot.finalDng" && ig.vars.storage[area] && ig.vars.storage[area].azureDungeonReset)
 		{
 			this.varName = "plot.finalDngRevisit";
+		}
+		return this.parent();
+	}
+});
+ig.EVENT_STEP.SET_PERMA_TASK.inject({
+	start(){
+		var area = sc.map.currentPlayerArea.path;
+		if (area == "arid-dng-2") area = "arid-dng";
+		if (ig.vars.storage[area] && ig.vars.storage[area].azureDungeonReset)
+		{ //don't overwrite the current story mission
+			return;
 		}
 		return this.parent();
 	}

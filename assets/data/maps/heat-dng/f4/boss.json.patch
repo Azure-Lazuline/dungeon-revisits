@@ -30,6 +30,7 @@
 					}, {
 						"type": "PLAY_SOUND",
 						"sound": "media/sound/battle/level-up.ogg",
+						"speed": 1.4,
 						"volume": 1
 					}, {
 						"entity": {

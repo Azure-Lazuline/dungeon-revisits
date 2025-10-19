@@ -195,7 +195,7 @@
 								"thenStep": [{
 									"type": "SHOW_BOARD_MSG",
 									"text": {
-										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 70\\c[0]. All puzzles, enemies, events, and chests will be reset."
+										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 75\\c[0]. All puzzles, enemies, events, and chests will be reset."
 									},
 									"side": "RIGHT",
 									"center": false,

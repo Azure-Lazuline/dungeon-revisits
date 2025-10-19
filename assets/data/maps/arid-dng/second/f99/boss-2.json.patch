@@ -17,7 +17,11 @@
 				"event": [{
 						"type": "PLAY_SOUND",
 						"sound": "media/sound/battle/level-up.ogg",
+						"speed": 1.4,
 						"volume": 1
+					}, {
+						"type": "DUNGEON_REPLAY_DONE",
+						"dungeon": "arid-dng"
 					}, {
 						"type": "SHOW_BOARD_MSG",
 						"center": true,
@@ -32,9 +36,6 @@
 						}
 					}, {
 						"type": "CLEAR_BOARD_MSG"
-					}, {
-						"type": "DUNGEON_REPLAY_DONE",
-						"dungeon": "arid-dng"
 					}, {
 						"changeType": "set",
 						"type": "CHANGE_VAR_BOOL",
