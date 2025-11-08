@@ -10,7 +10,7 @@ This resets every puzzle, enemy, event, and chest. When replaying an Element dun
 
 Once you've beaten the boss of **Sapphire Ridge**, you unlock all the main dungeons scaled to lv60: Rhombus Dungeon, Temple Mine, Faj'ro Temple, Zir'vitar Temple, So'najiz Temple, and Grand Krys'kajo.
 
-Once you've beaten **Ku'lero Temple** in the postgame, all of them scale up to lv75, and you also unlock Vermillion Tower and Ku'lero Temple.
+Once you've beaten **Ku'lero Temple** in the postgame, all of them scale up to lv70, and you also unlock Vermillion Tower and Ku'lero Temple.
 
 ### Installation
 

@@ -14,13 +14,12 @@
 					"x": 16,
 					"y": 16
 				},
-				"mapId": 604,
 				"propType": {
 					"name": "groundProjector",
 					"sheet": "dungeon-revisits"
 				},
 				"propAnim": "",
-				"spawnCondition": "plot.line >= 19200",
+				"spawnCondition": "plot.line >= 0",
 				"hideCondition": ""
 			}
 		}
@@ -40,7 +39,6 @@
 					"x": 16,
 					"y": 16
 				},
-				"mapId": 605,
 				"propType": {
 					"sheet": "dungeon-revisits",
 					"name": "signTall"
@@ -57,6 +55,16 @@
 							"varName": "tmp.dungeonReplay",
 							"changeType": "set",
 							"value": true
+						},{
+							"type": "CHANGE_VAR_BOOL",
+							"varName": "tmp.dungeonReplayElement",
+							"changeType": "set",
+							"value": true
+						},{
+							"type": "CHANGE_VAR_BOOL",
+							"varName": "tmp.dungeonReplayRhombus",
+							"changeType": "set",
+							"value": false
 						}
 					]
 				},
@@ -76,213 +84,93 @@
 					"x": 16,
 					"y": 16
 				},
-				"mapId": 606,
-				"event": [{
+				"event": [
+					{
 						"type": "CHANGE_VAR_BOOL",
 						"changeType": "set",
 						"value": false,
-						"varName": "tmp.dungeonReplay"
-					}, {
-						"name": "start",
-						"type": "LABEL"
-					}, {
-						"person": {
-							"person": "main.lea",
-							"expression": "DEFAULT"
+						"varName": "tmp.dungeonReplayStart"
+					},{
+						"entity": {
+							"player": true
 						},
-						"type": "ADD_MSG_PERSON",
-						"side": "RIGHT"
-					}, {
-						"0": [{
-								"type": "CLEAR_BOARD_MSG"
+						"action": [{
+								"type": "SET_RELATIVE_SPEED",
+								"value": 0.5
 							}, {
-								"type": "REMOVE_MSG_PERSON",
-								"person": "main.lea"
-							},{
-								"entity": {
-									"player": true
-								},
-								"action": [{
-										"type": "SET_RELATIVE_SPEED",
-										"value": 0.5
-									}, {
-										"type": "NAVIGATE_TO_POINT",
-										"target": {
-											"x": 548,
-											"y": 310,
-											"lvl": "1"
-										}
-									}, {
-										"type": "SET_FACE",
-										"face": "NORTH",
-										"rotate": true,
-										"rotateSpeed": 1
-									}
-								],
-								"type": "DO_ACTION",
-								"wait": false,
-								"keepState": true
-							}, {
-								"type": "WAIT",
-								"time": 0.2
-							}, {
-								"type": "DUNGEON_REPLAY",
-								"dungeon": "cold-dng"
-							}, {
-								"type": "WAIT_UNTIL_ACTION_DONE",
-								"entity": {
-									"player": true
+								"type": "NAVIGATE_TO_POINT",
+								"target": {
+									"x": 548,
+									"y": 310,
+									"lvl": "1"
 								}
 							}, {
-								"type": "WAIT",
-								"time": 0.3
-							}, {
-								"entity": {
-									"player": true
-								},
-								"action": [{
-										"type": "SET_SLIP_THROUGH",
-										"value": true
-									}, {
-										"type": "SET_RELATIVE_SPEED",
-										"value": 1
-									}, {
-										"type": "MOVE_FORWARD",
-										"time": 5
-									}
-								],
-								"type": "DO_ACTION",
-								"keepState": true
-							}, {
-								"type": "SET_TELEPORT_COLOR",
-								"color": "white"
-							}, {
-								"type": "SET_TELEPORT_TIME",
-								"fadeIn": 1,
-								"fadeOut": 1
-							}, {
-								"type": "TELEPORT",
-								"map": "cold-dng.g.center",
-								"marker": "south"
-							}, {
-								"type": "WAIT",
-								"time": 4
+								"type": "SET_FACE",
+								"face": "NORTH",
+								"rotate": true,
+								"rotateSpeed": 1
 							}
 						],
-						"1": [{
-								"type": "CHANGE_VAR_BOOL",
-								"changeType": "set",
-								"value": false,
-								"varName": "dungeonReplayTimerActive"
-							},{
-								"name": "start",
-								"type": "GOTO_LABEL"
-							}
-						],
-						"2": [{
-								"type": "CHANGE_VAR_BOOL",
-								"changeType": "set",
-								"value": true,
-								"varName": "dungeonReplayTimerActive"
-							},{
-								"name": "start",
-								"type": "GOTO_LABEL"
-							}
-						],
-						"3": [{
-								"type": "REMOVE_MSG_PERSON",
-								"person": "main.lea"
-							}, {
-								"type": "IF",
-								"withElse": true,
-								"condition": "plot.line >= 48000",
-								"thenStep": [{
-									"type": "SHOW_BOARD_MSG",
-									"text": {
-										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 75\\c[0]. All puzzles, enemies, events, and chests will be reset."
-									},
-									"side": "RIGHT",
-									"center": false,
-									"autoContinue": false
-								}],
-								"elseStep": [{
-									"type": "SHOW_BOARD_MSG",
-									"text": {
-										"en_US": "This terminal lets you reset the dungeon to play it again, scaled to \\c[3]level 60\\c[0]. All puzzles, enemies, events, and chests will be reset."
-									},
-									"side": "RIGHT",
-									"center": false,
-									"autoContinue": false
-								}]
-							},{
-								"type": "SHOW_BOARD_MSG",
-								"text": {
-									"en_US": "While inside, you won't be able to use the dungeon's \\c[3]Element\\c[0] until you reclaim it, but all other Elements stay active."
-								},
-								"side": "RIGHT",
-								"center": false,
-								"autoContinue": false
-							}, {
-								"type": "SHOW_BOARD_MSG",
-								"text": {
-									"en_US": "You can leave the dungeon at any time and return to finish it later."
-								},
-								"side": "RIGHT",
-								"center": false,
-								"autoContinue": false
-							}, {
-								"type": "CLEAR_BOARD_MSG"
-							}, {
-								"name": "start",
-								"type": "GOTO_LABEL"
-							}
-						],
-						"4": [{
-								"name": "end",
-								"type": "GOTO_LABEL"
-							}
-						],
-						"type": "SHOW_CHOICE",
-						"person": {
-							"person": "main.lea",
-							"expression": "DEFAULT"
+						"type": "DO_ACTION",
+						"wait": false,
+						"keepState": true
+					}, {
+						"type": "WAIT",
+						"time": 0.2
+					}, {
+						"type": "DUNGEON_REPLAY",
+						"dungeon": "cold-dng"
+					}, {
+						"type": "WAIT_UNTIL_ACTION_DONE",
+						"entity": {
+							"player": true
+						}
+					}, {
+						"type": "WAIT",
+						"time": 0.3
+					}, {
+						"entity": {
+							"player": true
 						},
-						"options": [{
-								"label": {
-									"en_US": "Start Dungeon"
-								}
+						"action": [{
+								"type": "SET_SLIP_THROUGH",
+								"value": true
 							}, {
-								"label": {
-									"en_US": "Timer \\c[2][On]\\c[0]"
-								},
-								"showCondition": "dungeonReplayTimerActive"
+								"type": "SET_RELATIVE_SPEED",
+								"value": 1
 							}, {
-								"label": {
-									"en_US": "Timer \\c[1][Off]\\c[0]"
-								},
-								"showCondition": "!dungeonReplayTimerActive"
-							}, {
-								"label": {
-									"en_US": "\\c[3][Help]\\c[0]"
-								}
-							}, {
-								"label": {
-									"en_US": "Cancel"
-								}
+								"type": "MOVE_FORWARD",
+								"time": 5
 							}
-						]
+						],
+						"type": "DO_ACTION",
+						"keepState": true
 					}, {
-						"name": "end",
-						"type": "LABEL"
+						"type": "SET_TELEPORT_COLOR",
+						"color": "white"
+					}, {
+						"type": "SET_TELEPORT_TIME",
+						"fadeIn": 1,
+						"fadeOut": 1
+					}, {
+						"type": "TELEPORT",
+						"map": "cold-dng.g.center",
+						"marker": "south"
+					}, {
+						"type": "WAIT",
+						"time": 4
 					}
 				],
-				"name": "dungeonReplay",
+				"name": "dungeonReplayStart",
 				"eventType": "CUTSCENE",
-				"startCondition": "tmp.dungeonReplay",
+				"startCondition": "tmp.dungeonReplayStart",
 				"endCondition": "false",
 				"triggerType": "ALWAYS"
 			}
 		}
+	},{
+		"type": "IMPORT",
+		"src": "data/maps/dungeon-revisit.json"
 	},{
 		"type": "EXIT"
 }]

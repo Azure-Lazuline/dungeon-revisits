@@ -21,6 +21,8 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 		ig.vars.storage.g["last-dng"] = null;
 	}
 
+	var chestsskipped = 0;
+	
 	for (var [map, value] of Object.entries(ig.vars.storage.maps))
 	{
 		if (map.startsWith(this.dungeonCamel))
@@ -33,7 +35,10 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 					dontRemove = true;
 				
 				if (map == "finalDng/b4/stargate" && flagkey == "chest_305") //macguffin coin chest
+				{
 					dontRemove = true;
+					chestsskipped++;
+				}
 				
 				if (dontRemove)
 				{
@@ -49,7 +54,7 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 		}
 	}
 	
-	var numChests = sc.stats.getMap("chests", this.dungeon);
+	var numChests = sc.stats.getMap("chests", this.dungeon) - chestsskipped;
 	sc.stats.subMap("chests", this.dungeon, numChests);
 	sc.stats.subMap("chests", "total", numChests);
 	sc.stats.setMap("chests", "totalRate", sc.map.getTotalChestsFound(true))
@@ -79,7 +84,7 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 		ig.vars.storage[this.dungeon].disabledElement = sc.ELEMENT.COLD;
 		ig.vars.storage["redoDungeonIntro"] = true;
 
-		sc.map.activeLandmarks["heat-area"]["balcony"] = null;
+		delete sc.map.activeLandmarks["heat-area"]["balcony"];
 		ig.vars.storage.g.fajroTopTeleport = null;
 		ig.game.getEntityByName("shortcut").onHideRequest = null; //remove "pop" sound from teleporter hiding
 	}
@@ -115,7 +120,7 @@ ig.EVENT_STEP.DUNGEON_REPLAY = ig.EventStepBase.extend({
 		ig.vars.storage.maps["forest/interior/temple-inner"] = {};
 		ig.vars.storage.g["final-dng"] = {};
 		
-		sc.map.activeLandmarks["final-dng"]["center"] = null;
+		delete sc.map.activeLandmarks["final-dng"]["center"];
 
 		ig.vars.storage.plot.finalDng = 1000;
 		ig.vars.storage.plot.finalDngRevisit = 0;
@@ -216,13 +221,38 @@ ig.EVENT_STEP.SHOW_BOARD_MSG.inject({
 			this.text = "Dungeon complete!";
 			var timername = "dungeon-replay-" + ig.vars.storage["lastDungeonBeaten"];
 			var time = sc.timers.getPassedTime(timername);
-			if (time != null)
+			if (time != null && ig.vars.get("dungeonReplayTimerActive")) //show timer
 			{
 				sc.timers.removeTimer(timername);
 				this.text += "\nTime: " + sc.timers.formatTime(time, true);
 			}
+			if (sc.map && sc.map.getCurrentChestCount() != 0) //show chester
+			{
+				var chests = sc.stats.getMap("chests", sc.map.currentArea.path);
+				var chestsmax = sc.map.getCurrentChestCount();
+				this.text += "\nChests: " + chests + "/" + chestsmax;
+			}
 		}
 		return this.parent();
+	}
+});
+
+sc.TimersModel.inject({ //keep timer going when you die
+	onStoragePreLoad(a){
+		var area = sc.map && sc.map.currentArea ? sc.map.currentArea.path : null;
+		if (area == "arid-dng-2") area = "arid-dng";
+		if (area != null && ig.vars.storage[area] && ig.vars.storage[area].azureDungeonReset && this.timers["dungeon-replay-" + area] && this.timers["dungeon-replay-global"])
+		{
+			var time1 = this.timers["dungeon-replay-" + area].timer;
+			var time2 = this.timers["dungeon-replay-global"].timer;
+
+			this.parent(a);
+
+			this.timers["dungeon-replay-" + area].timer = time1;
+			this.timers["dungeon-replay-global"].timer = time2;
+		}
+		else
+			this.parent(a);
 	}
 });
 
@@ -263,20 +293,21 @@ ig.ENTITY.Enemy.inject({
 	init(a, b, c, d)
 	{
 		this.parent(a, b, c, d);
-		var area = sc.map.currentPlayerArea.path;
-		if (area == "arid-dng-2") area = "arid-dng";
-		if (ig.vars.storage[area] && ig.vars.storage[area].azureDungeonReset)
+		if (ig.vars.storage.inDungeonReset)
 		{
 			this.boosterState = sc.ENEMY_BOOSTER_STATE.NONE;
+			this.level.setting = null; //no manual level override (like viruses in Vermillion Tower that are manually set to lv55)
 			
-			var levelTarget = 60;
-			if (ig.vars.get("plot.line") >= 48000)
-				levelTarget = 75;
+			var levelTarget = ig.vars.storage.dungeonResetBaseLvl;
 			
-			if (levelTarget > this.getLevel())
-			{
-				this.setLevelOverride(levelTarget);
-			}
+			//certain enemies seem to be tuned to be above your level when you meet them, so give them a little boost. this doesn't matter much but i mostly like the aesthetic of the number being higher
+			/*if (this.enemyName == "boss.designer-2" || this.enemyName == "boss.elephant")
+				levelTarget += 5;
+			if (this.enemyName.startsWith("final.god"))
+				levelTarget += 5;*/
+			
+			//if (levelTarget > this.getLevel())
+			this.setLevelOverride(levelTarget);
 		}
 	}
 });
@@ -285,6 +316,25 @@ ig.Game.inject({
 	loadingComplete(...args){
 		this.parent(...args);
 		
+		ig.vars.storage.dungeonResetBaseLvl = 60;
+		if (ig.vars.get("plot.line") >= 48000)
+			ig.vars.storage.dungeonResetBaseLvl = 70;
+		
+		if (!ig.vars.storage.dungeonResetDifficulty)
+			ig.vars.storage.dungeonResetDifficulty = 0;
+		
+		var hasDifficultyMods = false;
+		for (var c=0;c<window.activeMods.length;c++)
+			if (window.activeMods[c].name == "difficulty-mods")
+				hasDifficultyMods = true;
+		
+		ig.vars.storage.tmp.hasDifficultyMods = hasDifficultyMods;
+
+		ig.vars.storage.dungeonResetDifficultyName = ["Normal", "Hard", "Intense"][ig.vars.storage.dungeonResetDifficulty];
+		
+		ig.vars.storage.dungeonResetDamageMult = 1;
+		ig.vars.storage.dungeonResetHpMult = 1;
+
 		var inDungeonReset = false;
 		if(sc && sc.map && sc.map.currentPlayerArea)
 		{
@@ -304,21 +354,64 @@ ig.Game.inject({
 				if (ig.vars.storage.maps[name])
 					ig.vars.storage.maps[name].hiddenUntilRevisit = null;
 			}
+
+			var diffPercent = ig.vars.storage.dungeonResetDifficulty / 2; //0.0 = normal, 1.0 = intense
+
+			var dmg = 1.8; //base damage is 180% of the normal scaling (since endgame gear scales way faster than enemies do; i compared number of hits directly and this was pretty close)
+			var hp = 1.0;
+			
+			dmg *= 1.0 + 1.0 * diffPercent;
+			hp *= 1.0 + 0.3 * diffPercent;
+			
+			//manual balancing since the auto-scaling is messed up in some cases
+			if (area == "cold-dng")
+				hp *= 0.85;
+			if (area == "heat-dng")
+				hp *= 0.9;
+			if (area == "shock-dng")
+				hp *= 1.15;
+			if (area == "final-dng")
+			{
+				hp *= 0.95;
+				dmg *= 1.1;
+			}
+
+			ig.vars.storage.dungeonResetDamageMult = dmg;
+			ig.vars.storage.dungeonResetHpMult = dmg;
+			
 		}
 		if((ig.vars.storage.inDungeonReset != inDungeonReset || inDungeonReset) && sc.inventory)
 		{
 			ig.vars.storage.inDungeonReset = inDungeonReset;
 			if (inDungeonReset)
 			{
-				var levelTarget = 60;
-				if (ig.vars.get("plot.line") >= 48000)
-					levelTarget = 75;
-				sc.inventory.updateScaledEquipment(levelTarget);
+				sc.inventory.updateScaledEquipment(ig.vars.storage.dungeonResetBaseLvl);
 			}
 			else
 				sc.inventory.updateScaledEquipment(sc.model.player.level);
 		}
 		
+	}
+});
+
+ig.ENTITY.Player.inject({
+	onPreDamageModification(a, b, c, d, e, f)
+	{
+		if (ig.vars.storage.inDungeonReset && e && e.damage)
+		{
+			e.damage = Math.round(e.damage * ig.vars.storage.dungeonResetDamageMult);
+		}
+		return this.parent(a, b, c, d, e, f);
+	}
+});
+ig.ENTITY.Enemy.inject({
+	onPreDamageModification(a, b, c, d, e, f)
+	{
+		if (ig.vars.storage.inDungeonReset && e && e.damage)
+		{
+			e.damage = Math.round(e.damage / ig.vars.storage.dungeonResetHpMult);
+		}
+		return this.parent(a, b, c, d, e, f);
 	}
 });
 
@@ -358,7 +451,7 @@ sc.PlayerModel.inject({
 		  return false;
       return this.parent(a);
   },
-  getCore(a) 
+  getCore(a)
   {
 	  if (sc && sc.map && sc.map.currentPlayerArea)
 	  {
@@ -367,6 +460,20 @@ sc.PlayerModel.inject({
 			  return false;
 	  }
 	  return this.parent(a);
+  },
+  addCredit(a, b, c)
+  {
+	  if (ig.vars.storage.inDungeonReset)
+		  a = Math.round(a * 0.5); //gain half money (since you actually get *tons* for doing a dungeon; i want this to be useful but it was absurd)
+
+	  return this.parent(a, b, c);
+  },
+  addExperience(a, b, c, d, e)
+  {
+	  if (ig.vars.storage.inDungeonReset)
+		  return 0;
+
+	  return this.parent(a, b, c, d, e);
   }
 });
 
